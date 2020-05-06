@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: "layer 1"
+
+Resources:
+
+  LayerForLambda:
+    Type: 'AWS::Serverless::LayerVersion'
+    Properties:
+      CompatibleRuntimes:
+        - nodejs12.x
+      ContentUri: layer_source/
+      Description: "xray sdk"
+      LayerName: "xray_sdk_layer"
+
+
+  XrayLayerTestLambda:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: lamda-to-test-layer
+      Handler: index.handler
+      Runtime: nodejs12.x
+      CodeUri: lambda_source/
+      Role: !GetAtt XrayLayerTestLambdaRole.Arn
+      Description: "lambda to start texttract process"
+      MemorySize: 128
+      Timeout: 3
+      Layers:
+        - !Ref LayerForLambda
+
+  XrayLayerTestLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      RoleName: xray_layer_test_lambda_role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: xray_layer_test_lambda_log_policy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogStream
+                  - logs:CreateLogGroup
+                  - logs:PutLogEvents
+                Resource:
+                  - arn:aws:logs:*:*:*
