@@ -30,7 +30,7 @@ The above step will kick off a cloudformation stack by the name "lambda-layer-ex
 - AWS Lambda function to which the above is layer is attached and the code refers the library (look at index.js under the lambda_source folder)
 
 
-NOTE: I am using a Nodejs example and the structure in which I am storing aws-xray-sdk library is very important. [Refer to this document for different runtimes](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path) 
+NOTE: The structure in which you store the library of the layer source code differs from runtime to runtime . [Refer to this document for different runtimes](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path) 
 
 
 ## Step.4 TESTING
