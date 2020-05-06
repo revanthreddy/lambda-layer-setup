@@ -1,11 +1,10 @@
 # Lambda Layers Setup
 
-This repo contains source code and supporting files to do teach you how to setup and use lambda layers. This repo uses SAM style deployment of the code (using cloudformation package and deploy commands)
+The goal of this code is to learn how to leverage AWS Lambda layers to store the common libraries/dependencies to reduce the size of your lambda deployment package.
+This repo contains source code and supporting files including the libraries to do teach you how to setup and use lambda layers. We use SAM style deployment of the code (using cloudformation package and deploy commands)
 
-## Step.1 `CLONE THIS REPO`
 
-
-## Step.2 Prerequisites 
+## Step.1 Prerequisites 
 
 * AWS CLI (with enough privileges to run the below commands)
 * IDE (Like Pycharm, VS Code or which ever floats your boat)
@@ -16,7 +15,7 @@ $ aws s3 mb s3://{YOUR_TEMP_BUCKET_NAME}
 ```
 
 
-## Step.3 Package and Deploy with the existing template.yaml
+## Step.2 Package and Deploy with the existing layer.yaml
 
 * In the current project root run the below commands
 
@@ -33,14 +32,14 @@ The above step will kick off a cloudformation stack by the name "lambda-layer-ex
 NOTE: The structure in which you store the library of the layer source code differs from runtime to runtime . [Refer to this document for different runtimes](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path) 
 
 
-## Step.4 TESTING
+## Step.3 TESTING
 
 - In your AWS Lambda console open your function `lamda-to-test-layer` and create a sample test event (it can be anything), save it and run it.
 Your function should execute smoothly.
 - Let's try a sad path. In the same lambda console of the function detach the lambda layer and then rerun the test. It should fail with an import package error. 
 
 
-## Step.5 CLEANUP
+## Step.4 CLEANUP
 
 * Delete the `lambda-layer-example-stack` from the cloudformation console
 
