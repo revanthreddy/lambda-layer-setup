@@ -25,7 +25,7 @@ $ sh build_and_deploy.sh {YOUR_TEMP_BUCKET_NAME}
 
 The above step will kick off a cloudformation stack by the name "lambda-layer-example-stack". Below are the resources that are created by the stack.
 
-- AWS Lambda layer containing the aws-xray-sdk library 
+- AWS Lambda layer containing the `aws-xray-sdk` library and a common custom function such as `custom.js` that is used in our lambda code
 - AWS Lambda function to which the above is layer is attached and the code refers the library (look at index.js under the lambda_source folder)
 
 
