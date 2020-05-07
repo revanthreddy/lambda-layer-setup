@@ -1,7 +1,6 @@
 # Lambda Layers Setup
 
-The goal of this code is to learn how to leverage AWS Lambda layers to store the common libraries/dependencies to reduce the size of your lambda deployment package.
-This repo contains source code and supporting files including the libraries to do teach you how to setup and use lambda layers. We use SAM style deployment of the code (using cloudformation package and deploy commands)
+The goal of this artifact is to help you understand how to leverage AWS Lambda layers to store the common libraries/dependencies that your application code uses to reduce the size of your lambda deployment package. The source code in the repo (link provided) contains all the supporting files including the libraries to setup and use lambda layers. We use cloudformation package and deploy commands for our serverless code deployment.
 
 
 ## Step.1 Prerequisites 
