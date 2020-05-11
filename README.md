@@ -1,13 +1,20 @@
 # Lambda Layers Setup
 
-The goal of this artifact is to help you understand how to leverage AWS Lambda layers to store the common libraries/dependencies that your application code uses to reduce the size of your lambda deployment package. The source code in the repo (link provided) contains all the supporting files including the libraries to setup and use lambda layers. We use cloudformation package and deploy commands for our serverless code deployment.
+The goal of this artifact is to help you understand how to leverage AWS Lambda layers to store the common libraries/dependencies that your application code uses to reduce the size of your lambda deployment package. The source code in the repo (link provided) contains all the supporting files including the libraries to setup and use lambda layers. We will use AWS Serverless Application Model (SAM) to build our serverless application.
+As part of this example we create
+* An AWS Lambda layer consisting of 2 packages
+    * aws-xray-sdk Node.js package 
+    * A simple Custom library class
+* An AWS Lambda function which uses the two packages from the above layer
 
 
-## Step.1 Prerequisites 
+##Prerequisites 
 
+* SAM CLI ([Instructions to install SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) )
 * AWS CLI (with enough privileges to run the below commands)
 * IDE (Like Pycharm, VS Code or which ever floats your boat)
-* Create an S3 bucket that we will use as part CloudFormation package and deploy commands and remember the name (or use an existing one)
+
+## Step.1 Create an S3 bucket that we will use as part SAM deployment. If you already have an existing bucket that you use, skip the below command
 
 ```bash
 $ aws s3 mb s3://{YOUR_TEMP_BUCKET_NAME}
